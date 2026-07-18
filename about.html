@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — The Clear Side</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f2eee2;
+    --paper-dim: #e9e4d4;
+    --ink: #1a1814;
+    --ink-soft: #4a463d;
+    --stamp: #a13d2c;
+    --stamp-dark: #7e2f21;
+    --ledger: #1f3a52;
+    --brass: #a3812f;
+    --rule: #c9c2ac;
+    --display: 'Newsreader', serif;
+    --body: 'Source Serif 4', serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Masthead ---------- */
+  .masthead {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 36px 24px 18px;
+    text-align: center;
+    border-bottom: 4px double var(--ink);
+  }
+  .masthead .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    margin-bottom: 10px;
+  }
+  .masthead h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(36px, 6vw, 60px);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .masthead .tagline {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+
+  /* ---------- Nav ---------- */
+  nav {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--rule);
+  }
+  nav a { text-decoration: none; padding-bottom: 3px; }
+  nav a:hover { color: var(--stamp); }
+  nav a.active { color: var(--stamp); border-bottom: 2px solid var(--stamp); }
+
+  /* ---------- About layout ---------- */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 24px 90px;
+  }
+
+  .stamp-mark {
+    display: inline-block;
+    border: 2px solid var(--stamp);
+    color: var(--stamp);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    transform: rotate(-3deg);
+    margin-bottom: 24px;
+  }
+
+  .manifesto h2 {
+    font-family: var(--display);
+    font-size: clamp(30px, 5vw, 44px);
+    line-height: 1.15;
+    margin: 0 0 30px;
+  }
+
+  .manifesto p {
+    font-size: 18px;
+    line-height: 1.75;
+    margin: 0 0 22px;
+  }
+
+  .manifesto p:first-of-type::first-letter {
+    font-family: var(--display);
+    font-size: 58px;
+    font-weight: 600;
+    float: left;
+    line-height: 0.8;
+    padding: 6px 10px 0 0;
+    color: var(--stamp);
+  }
+
+  .signoff {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .details-box {
+    background: var(--paper-dim);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-top: 48px;
+  }
+  .details-box h4 {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ledger);
+    border-bottom: 2px solid var(--ledger);
+    padding-bottom: 8px;
+    margin: 0 0 14px;
+  }
+  .details-box p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin: 0 0 10px;
+  }
+  .details-box p:last-child { margin-bottom: 0; }
+
+  footer {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 26px 24px 50px;
+    border-top: 4px double var(--ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="eyebrow">Established 2026</div>
+    <h1>The Clear Side</h1>
+    <div class="tagline">Econ and politics, explained plainly — one confusing topic at a time</div>
+  </header>
+
+  <nav>
+    <a href="index.html">Dispatches</a>
+    <a href="index.html#markets-watch">Markets Watch</a>
+    <a href="about.html" class="active">About</a>
+  </nav>
+
+  <main>
+    <div class="stamp-mark">The Manifesto</div>
+
+    <section class="manifesto">
+      <p>Born out of a summer afternoon with nothing to do, The Clear Side is more than a site, it's a belief. The political thinking sphere can be more accessible for people like you and me; we only need to be committed to baby steps of understanding. Most language is built for those with years of experience, but it doesn't have to be that way.</p>
+      <p>The Clear Side is my attempt to bridge the gap. I'm working through government and economics this school year, and I've decided to let you see my notes. I'll take the high-level ideas I learn and turn them into digestible overviews — once a week, from a topic that's probably in your news feed. If I can explain it lucidly, that means I get it. If you understand it, even better. Welcome to The Clear Side.</p>
+    </section>
+
+    <div class="signoff">— [Your Name], Founder &amp; Writer</div>
+
+    <div class="details-box">
+      <h4>The Fine Print</h4>
+      <p>I'm a junior in high school, working through Honors Government &amp; Economics and Honors Writing/Rhetoric this year. This site — and the weekly explainers on it — are part of how I'm learning that material, in public, alongside a summer research project on tariff policy and retail stocks.</p>
+      <p>Currently studying: Khan Academy's Stocks and Bonds unit and AP Macroeconomics.</p>
+    </div>
+  </main>
+
+  <footer>
+    The Clear Side — a student-run explainer project · Not financial or legal advice · Updated weekly
+  </footer>
+
+</body>
+</html>
