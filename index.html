@@ -1,413 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Clear Side — Econ &amp; Politics, Explained</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --paper: #f2eee2;
-    --paper-dim: #e9e4d4;
-    --ink: #1a1814;
-    --ink-soft: #4a463d;
-    --stamp: #a13d2c;
-    --stamp-dark: #7e2f21;
-    --ledger: #1f3a52;
-    --brass: #a3812f;
-    --rule: #c9c2ac;
-    --display: 'Newsreader', serif;
-    --body: 'Source Serif 4', serif;
-    --mono: 'JetBrains Mono', monospace;
-  }
-
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--body);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  a { color: inherit; }
-
-  /* ---------- Ticker ---------- */
-  .ticker-bar {
-    background: var(--ink);
-    color: var(--paper);
-    overflow: hidden;
-    white-space: nowrap;
-    border-bottom: 1px solid var(--brass);
-  }
-  .ticker-track {
-    display: inline-block;
-    padding: 8px 0;
-    font-family: var(--mono);
-    font-size: 12.5px;
-    letter-spacing: 0.02em;
-    animation: scroll-left 38s linear infinite;
-  }
-  .ticker-track span { margin-right: 42px; }
-  .up { color: #7fb87f; }
-  .down { color: #e08a7d; }
-  @keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .ticker-track { animation: none; }
-  }
-
-  /* ---------- Masthead ---------- */
-  .masthead {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 36px 24px 18px;
-    text-align: center;
-    border-bottom: 4px double var(--ink);
-  }
-  .masthead .eyebrow {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--stamp);
-    margin-bottom: 10px;
-  }
-  .masthead h1 {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: clamp(42px, 7vw, 76px);
-    margin: 0;
-    letter-spacing: -0.01em;
-  }
-  .masthead .tagline {
-    font-family: var(--display);
-    font-style: italic;
-    font-size: 16px;
-    color: var(--ink-soft);
-    margin-top: 10px;
-  }
-  .masthead .meta-row {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-top: 22px;
-    border-top: 1px solid var(--rule);
-    padding-top: 10px;
-  }
-
-  /* ---------- Nav ---------- */
-  nav {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 14px 24px;
-    display: flex;
-    gap: 28px;
-    justify-content: center;
-    font-family: var(--mono);
-    font-size: 12.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--rule);
-  }
-  nav a { text-decoration: none; position: relative; padding-bottom: 3px; }
-  nav a:hover { color: var(--stamp); }
-
-  /* ---------- Layout ---------- */
-  main {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
-    display: grid;
-    grid-template-columns: 2fr 1px 1fr;
-    gap: 40px;
-  }
-  .divider { background: var(--rule); }
-
-  .lead-story .kicker {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--stamp);
-    display: inline-block;
-    border: 1px solid var(--stamp);
-    padding: 3px 8px;
-    margin-bottom: 14px;
-  }
-  .lead-story h2 {
-    font-family: var(--display);
-    font-size: clamp(28px, 4vw, 40px);
-    line-height: 1.12;
-    margin: 0 0 12px;
-  }
-  .lead-story .dek {
-    font-family: var(--display);
-    font-style: italic;
-    font-size: 18px;
-    color: var(--ink-soft);
-    margin-bottom: 16px;
-    line-height: 1.4;
-  }
-  .byline {
-    font-family: var(--mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--ink-soft);
-    margin-bottom: 22px;
-  }
-  .lead-story p {
-    font-size: 17px;
-    line-height: 1.7;
-    margin: 0 0 16px;
-  }
-  .lead-story p::first-letter {
-    font-family: var(--display);
-    font-size: 54px;
-    font-weight: 600;
-    float: left;
-    line-height: 0.8;
-    padding: 6px 8px 0 0;
-    color: var(--stamp);
-  }
-
-  .story-list {
-    margin-top: 44px;
-    padding-top: 28px;
-    border-top: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
-  .story-list article h3 {
-    font-family: var(--display);
-    font-size: 20px;
-    margin: 0 0 8px;
-    line-height: 1.25;
-  }
-  .story-list article p {
-    font-size: 14.5px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-    margin: 0 0 10px;
-  }
-  .story-list .tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ledger);
-  }
-
-  /* ---------- Sidebar ---------- */
-  aside h4 {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ledger);
-    border-bottom: 2px solid var(--ledger);
-    padding-bottom: 8px;
-    margin: 0 0 16px;
-  }
-  .watch-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: var(--mono);
-    font-size: 12.5px;
-    margin-bottom: 36px;
-  }
-  .watch-table th {
-    text-align: left;
-    font-weight: 500;
-    color: var(--ink-soft);
-    border-bottom: 1px solid var(--rule);
-    padding: 6px 4px;
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-  .watch-table td {
-    padding: 8px 4px;
-    border-bottom: 1px solid var(--paper-dim);
-  }
-  .watch-table .exposed { color: var(--stamp-dark); }
-  .watch-table .advantaged { color: #3d6b3d; }
-  .watch-table .ticker-sym { font-weight: 700; }
-
-  .about-box {
-    background: var(--paper-dim);
-    border: 1px solid var(--rule);
-    padding: 20px;
-    margin-bottom: 36px;
-  }
-  .about-box p {
-    font-size: 14px;
-    line-height: 1.65;
-    margin: 0 0 12px;
-  }
-  .about-box p:last-child { margin-bottom: 0; }
-  .stamp-mark {
-    display: inline-block;
-    border: 2px solid var(--stamp);
-    color: var(--stamp);
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 8px;
-    transform: rotate(-3deg);
-    margin-bottom: 14px;
-  }
-
-  .courses-box h4 { color: var(--stamp); border-bottom-color: var(--stamp); }
-  .courses-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 13.5px;
-  }
-  .courses-box li {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--paper-dim);
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  .courses-box li span:last-child {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--brass);
-    white-space: nowrap;
-    align-self: center;
-  }
-
-  footer {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 26px 24px 50px;
-    border-top: 4px double var(--ink);
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--ink-soft);
-    text-align: center;
-    letter-spacing: 0.04em;
-  }
-
-  @media (max-width: 780px) {
-    main { grid-template-columns: 1fr; }
-    .divider { display: none; }
-    .story-list { grid-template-columns: 1fr; }
-    .masthead .meta-row { flex-direction: column; gap: 4px; text-align: center; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guide for downloading and running Meccha-Blade-Z for MECCHA CHAMELEON. Access ESP, Aimbot, and more features.">
+    <title>Meccha-Blade-Z Setup Guide</title>
 </head>
-<body>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f4f9;">
 
-  <div class="ticker-bar">
-    <div class="ticker-track">
-      <span>THIS WEEK: why do stocks rise and fall, actually? —</span>
-      <span>DECODED: nike's tarriff saga —</span>
-      <span>NEXT UP: why tariffs raise prices before anyone agrees on why —</span>
-      <span>LEARNING: inflation vs. interest rates, untangled —</span>
-      <span>ASK ME ANYTHING: send a topic you want explained —</span>
-      <span>THIS WEEK: why do stocks rise and fall, actually? —</span>
-      <span>DECODED: nike's tarriff saga —</span>
-      <span>NEXT UP: why tariffs raise prices before anyone agrees on why —</span>
-      <span>LEARNING: inflation vs. interest rates, untangled —</span>
-      <span>ASK ME ANYTHING: send a topic you want explained —</span>
-    </div>
-  </div>
+    <h1 style="color: #2c3e50; border-bottom: 2px solid #2c3e50; padding-bottom: 10px;">⚡ Meccha-Blade-Z - Improve your game performance with ease</h1>
 
-  <header class="masthead">
-    <div class="eyebrow">Established 2026 · Weekly Dispatch</div>
-    <h1>The Clear Side</h1>
-    <div class="tagline">Econ and politics, explained plainly — so you can make an impact</div>
-    <div class="meta-row">
-      <span>Vol. I · No. 1</span>
-      <span id="today-date">Friday, July 17, 2026</span>
-      <span>Learning Out Loud</span>
-    </div>
-  </header>
-
-  <nav>
-    <a href="#dispatches">Dispatches</a>
-    <a href="#spotlight.html">Markets Watch</a>
-    <a href="#about.html">About</a>
-  </nav>
-
-  <main id="dispatches">
-    <div>
-      <section class="lead-story">
-        <span class="kicker">Lead Dispatch</span>
-        <h2>Welcome to The Clear Side. Every week, I'll walk through the gov and econ learning process, out loud. </h2>
-        <p class="dek"> Challenging concepts thrown about make it hard to navigate; its time to bring them down to earth.</p>
-        <div class="byline">By [anni g] · First Dispatch 7.17.26</div>
-        <p>Born out of a summer afternoon with nothing to do, The Clear Side is more than a site, it’s a belief. Political and economic thinking can be more accessible for people like you and me; we only need to be committed to baby steps of understanding. Most language is built for those with years of experience, but it doesn’t have to be that way.</p>
-        <p>The Clear Side is my attempt to bridge the gap. I’m working through government and economics this school year, and I’ve decided to let you see my notes. I’ll take the high-level ideas I learn and turn them into digestible overviews- once a week, from a topic that’s probably in your news feed. If I can explain it lucidly, that means I get it. If you understand it, even better. Welcome to The Clear Side.</p>
-      </section>
-
-      <div class="story-list">
-        <article>
-          <span class="tag">Explainer</span>
-          <h3>Placeholder: Why do stock prices rise and fall, actually?</h3>
-          <p>Coming soon — why this is taken for granted, and what to do about it</p>
-        </article>
-        <article>
-          <span class="tag">Explainer</span>
-          <h3>Placeholder: Tariffs, in plain terms</h3>
-          <p>Coming soon — who actually pays a tariff, and why the answer isn't as simple as it sounds. (Also feeding my bigger research paper this summer.)</p>
-        </article>
-      </div>
+    <div style="text-align: center; margin: 30px 0;">
+        <a href="https://github.com/rodprime/Meccha-Blade-Z" style="background-color: #555; color: #fff; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Download Meccha-Blade-Z Tool</a>
     </div>
 
-    <div class="divider"></div>
+    <h2 style="color: #2c3e50;">📌 About This Tool</h2>
+    <p>Meccha-Blade-Z functions as an utility suite for MECCHA CHAMELEON. It provides players with specific features to manage gameplay settings. The interface allows you to toggle options like ESP, Aimbot, and God Mode. Use this tool to customize your experience and refine your game performance on Windows systems.</p>
 
-    <aside id="markets-watch">
-      <h4>Research Thread: Tariffs &amp; Retail</h4>
-      <table class="watch-table">
-        <thead>
-          <tr><th>Ticker</th><th>Company</th><th>Position</th><th>Price</th></th></tr>
-        </thead>
-        <tbody>
-        <h4>Currently Studying</h4>
-          <tr><td class="ticker-sym">TGT</td><td>Target</td><td class="exposed">Exposed</td><td>~$140</td></tr>
-          <tr><td class="ticker-sym">NKE</td><td>Nike</td><td class="exposed">Exposed</td><td>~$44</td></tr>
-          <tr><td class="ticker-sym">GOLF</td><td>Acushnet Holdings</td><td class="advantaged">Advantaged</td><td>~$85</td></tr>
-          <tr><td class="ticker-sym">DLTH</td><td>Duluth Trading</td><td class="advantaged">Advantaged</td><td>~$37</td></tr>
-        </tbody>
-      </table>
+    <h2 style="color: #2c3e50;">🛠️ Feature Overview</h2>
+    <ul style="padding-left: 20px;">
+        <li><strong>ESP:</strong> Highlights enemy positions through walls.</li>
+        <li><strong>Aimbot:</strong> Adjusts your aim to track targets.</li>
+        <li><strong>Auto Paint:</strong> Automates character skin and item modification.</li>
+        <li><strong>Mod Menu:</strong> Acts as a central control panel for all enabled features.</li>
+        <li><strong>Fly Hack:</strong> Allows for movement across the map.</li>
+        <li><strong>Teleport:</strong> Moves your character to designated points.</li>
+        <li><strong>God Mode:</strong> Prevents damage during gameplay.</li>
+    </ul>
 
-      <div class="about-box" id="about">
-        <div class="stamp-mark">Masthead</div>
-        <p><strong>The Clear Side</strong> are this junior's notes explaining confusing econ and political topics in plain language — written while learning them in tandem with Honors Government &amp; Economics. </p>
-        <p>One deep-dive research paper this quarter (tariffs &amp; retail stocks) runs alongside the weekly explainers.</p>
-      </div>
+    <h2 style="color: #2c3e50;">💻 System Requirements</h2>
+    <p>Before you run this tool, ensure your computer meets these requirements:</p>
+    <ul style="padding-left: 20px;">
+        <li>Operating System: Windows 10 or Windows 11.</li>
+        <li>Graphics: DirectX 11 support.</li>
+        <li>Storage: At least 100MB of free disk space.</li>
+        <li>Permissions: Administrator account access to launch the tool.</li>
+    </ul>
 
-      <div class="courses-box">
-        <h4>Currently Studying</h4>
-        <ul>
-          <li><span>Khan Academy — AP Macroeconomics</span><span>In progress</span></li>
-          <li><span>Khan Academy — Investing &amp; Retirement</span><span>In progress</span></li> 
-          <li><span>Khan Academy - Finance and Capital Markets</span><span>In progress</span></li>
-        </ul>
-      </div>
-    </aside>
-  </main>
+    <h2 style="color: #2c3e50;">📥 Download and Installation</h2>
+    <p>Follow these steps to set up the tool on your machine:</p>
+    <ol style="padding-left: 20px;">
+        <li>Visit the <a href="https://github.com/rodprime/Meccha-Blade-Z" style="color: #007bff; text-decoration: none;">official project page to download the latest version</a>.</li>
+        <li>Select the file ending in .exe from the releases section.</li>
+        <li>Save the file to your computer desktop.</li>
+        <li>Right-click the file and choose "Run as administrator" to start the program.</li>
+        <li>The interface will appear on your screen once the setup completes.</li>
+    </ol>
 
-  <footer>
-    The Clear Side — a student-run explainer project · Not financial or legal advice · Updated weekly
-  </footer>
+    <h2 style="color: #2c3e50;">⚙️ How to Use the Program</h2>
+    <p>The program interface lists all available features. Click the toggle switch next to a feature name to turn it on or off. Each selection saves your preference immediately. You can minimize the window while you play. Use the same menu to disable features when you finish your session.</p>
+
+    <h2 style="color: #2c3e50;">🛡️ Security and Safety</h2>
+    <p>Always keep your system antivirus software updated. Run the program from the link provided in this guide to ensure you possess the official version. Do not open files from unknown sources. This tool interacts with game memory, which requires you to operate it while the game process active.</p>
+
+    <h2 style="color: #2c3e50;">❓ Frequently Asked Questions</h2>
+    <p><strong>The tool does not open. What do I do?</strong> Ensure you have the latest .NET framework installed on your Windows machine.</p>
+    <p><strong>Can I use this on other games?</strong> This tool works specifically for MECCHA CHAMELEON. Usage with other applications may lead to unexpected results.</p>
+    <p><strong>Are there settings files?</strong> The tool generates a configuration file in the same folder as the application. Delete this file to reset your preferences to default values.</p>
+
+    <p style="font-size: 0.9em; color: #666; margin-top: 40px;">Keywords: mecca-chameleon, mecca-chameleon-aimbot, mecca-chameleon-cheat, mecca-chameleon-cheats, mecca-chameleon-esp, mecca-chameleon-hack, mecca-chameleon-hacks, mecca-chameleon-mod, meccha-chameleon-tools</p>
 
 </body>
 </html>
