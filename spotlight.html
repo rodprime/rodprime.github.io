@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Spotlight — The Clear Side</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f2eee2;
+    --paper-dim: #e9e4d4;
+    --ink: #1a1814;
+    --ink-soft: #4a463d;
+    --stamp: #a13d2c;
+    --stamp-dark: #7e2f21;
+    --ledger: #1f3a52;
+    --brass: #a3812f;
+    --rule: #c9c2ac;
+    --green: #3d6b3d;
+    --display: 'Newsreader', serif;
+    --body: 'Source Serif 4', serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  .masthead {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 36px 24px 18px;
+    text-align: center;
+    border-bottom: 4px double var(--ink);
+  }
+  .masthead .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    margin-bottom: 10px;
+  }
+  .masthead h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(36px, 6vw, 60px);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .masthead .tagline {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+  nav {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--rule);
+  }
+  nav a { text-decoration: none; padding-bottom: 3px; }
+  nav a:hover { color: var(--stamp); }
+  nav a.active { color: var(--stamp); border-bottom: 2px solid var(--stamp); }
+
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 90px;
+  }
+
+  .page-intro {
+    margin-bottom: 44px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-intro .stamp-mark {
+    display: inline-block;
+    border: 2px solid var(--stamp);
+    color: var(--stamp);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    transform: rotate(-3deg);
+    margin-bottom: 18px;
+  }
+  .page-intro h2 {
+    font-family: var(--display);
+    font-size: clamp(26px, 4.5vw, 36px);
+    line-height: 1.15;
+    margin: 0 0 14px;
+  }
+  .page-intro p {
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .spotlight-card {
+    border: 1px solid var(--rule);
+    background: #faf8f2;
+    margin-bottom: 50px;
+  }
+  .spotlight-head {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .spotlight-head .company {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .spotlight-head .ticker {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--brass);
+    letter-spacing: 0.06em;
+  }
+  .spotlight-head .price-box {
+    text-align: right;
+    font-family: var(--mono);
+  }
+  .spotlight-head .price {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .spotlight-head .price-label {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #b8b2a0;
+  }
+
+  .spotlight-body { padding: 30px 28px; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    margin: 0 0 10px;
+  }
+  .spotlight-body h3 {
+    font-family: var(--display);
+    font-size: 22px;
+    margin: 0 0 14px;
+  }
+  .spotlight-body p {
+    font-size: 16.5px;
+    line-height: 1.75;
+    margin: 0 0 18px;
+  }
+
+  .glossary {
+    background: var(--paper-dim);
+    border-left: 3px solid var(--brass);
+    padding: 16px 20px;
+    margin: 24px 0;
+  }
+  .glossary .glossary-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 8px;
+  }
+  .glossary dt {
+    font-family: var(--display);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 15px;
+    margin-top: 8px;
+  }
+  .glossary dd {
+    margin: 2px 0 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .takeaway {
+    border-top: 2px solid var(--ledger);
+    padding-top: 18px;
+    margin-top: 28px;
+  }
+  .takeaway .section-label { color: var(--ledger); }
+  .takeaway p {
+    font-size: 16.5px;
+    font-style: italic;
+    font-family: var(--display);
+    color: var(--ink);
+  }
+
+  .verdict-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid var(--stamp-dark);
+    color: var(--stamp-dark);
+    margin-bottom: 16px;
+  }
+  .verdict-tag.advantaged {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .up-next h4 {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ledger);
+    border-bottom: 2px solid var(--ledger);
+    padding-bottom: 8px;
+    margin: 0 0 18px;
+  }
+  .next-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .next-item {
+    border: 1px solid var(--rule);
+    padding: 16px;
+    text-align: center;
+  }
+  .next-item .co {
+    font-family: var(--display);
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .next-item .tk {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+
+  footer {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 26px 24px 50px;
+    border-top: 4px double var(--ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 600px) {
+    .next-list { grid-template-columns: 1fr; }
+    .spotlight-head { flex-direction: column; align-items: flex-start; }
+    .spotlight-head .price-box { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="eyebrow">Established 2026</div>
+    <h1>The Clear Side</h1>
+    <div class="tagline">Econ and politics, explained plainly — one confusing topic at a time</div>
+  </header>
+
+  <nav>
+    <a href="index.html">Dispatches</a>
+    <a href="spotlight.html" class="active">Stock Spotlight</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <main>
+    <div class="page-intro">
+      <div class="stamp-mark">Weekly Feature</div>
+      <h2>Stock Spotlight</h2>
+      <p>[Write 1-2 sentences here explaining the format of this recurring feature — what readers can expect from it.]</p>
+    </div>
+
+    <!-- FEATURED SPOTLIGHT — fill in one company per week -->
+    <article class="spotlight-card">
+      <div class="spotlight-head">
+        <div>
+          <div class="company">[Company Name]</div>
+          <div class="ticker">[TICKER]</div>
+        </div>
+        <div class="price-box">
+          <div class="price">[$0.00]</div>
+          <div class="price-label">as of [date]</div>
+        </div>
+      </div>
+
+      <div class="spotlight-body">
+        <!-- Use class="verdict-tag" for exposed, or class="verdict-tag advantaged" for advantaged -->
+        <span class="verdict-tag">[Exposed / Advantaged]</span>
+
+        <p class="section-label">What Happened</p>
+        <h3>[Your headline for this entry]</h3>
+        <p>[Explain what happened to this company's stock/situation this week, in plain language.]</p>
+        <p>[Add more context or a second paragraph if needed.]</p>
+
+        <div class="glossary">
+          <div class="glossary-label">Quick Definitions</div>
+          <dl>
+            <dt>[Term 1]</dt>
+            <dd>[Plain-language definition — write it like you're explaining it to a friend.]</dd>
+            <dt>[Term 2]</dt>
+            <dd>[Plain-language definition.]</dd>
+          </dl>
+        </div>
+
+        <p class="section-label">Why It Matters</p>
+        <p>[Explain why a reader should care — connect it to the bigger tariff/policy picture.]</p>
+
+        <div class="takeaway">
+          <p class="section-label">The Takeaway</p>
+          <p>"[One punchy sentence that sums up the whole entry — this is your pull-quote.]"</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- UP NEXT — update as you rotate through companies -->
+    <div class="up-next">
+      <h4>Coming Up in This Series</h4>
+      <div class="next-list">
+        <div class="next-item">
+          <div class="co">[Company]</div>
+          <div class="tk">[TICKER] · [Exposed/Advantaged]</div>
+        </div>
+        <div class="next-item">
+          <div class="co">[Company]</div>
+          <div class="tk">[TICKER] · [Exposed/Advantaged]</div>
+        </div>
+        <div class="next-item">
+          <div class="co">[Company]</div>
+          <div class="tk">[TICKER] · [Exposed/Advantaged]</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    The Clear Side — a student-run explainer project · Not financial or legal advice · Updated weekly
+  </footer>
+
+</body>
+</html>
